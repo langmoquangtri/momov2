@@ -40,8 +40,14 @@ app.post("/api/submit-lead", async (req, res) => {
 
   const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL || DEFAULT_WEBHOOK_URL;
 
+  // Append query params as a fallback for Apps Script 302 redirects
+  const targetUrl = new URL(webhookUrl);
+  targetUrl.searchParams.set("name", name || "");
+  targetUrl.searchParams.set("phone", phone || "");
+  targetUrl.searchParams.set("businessModel", businessModel || "");
+
   try {
-    const response = await fetch(webhookUrl, {
+    const response = await fetch(targetUrl.toString(), {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
