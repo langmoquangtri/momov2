@@ -1,5 +1,7 @@
 "use strict";
 
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeJjlbNmKEJSUSEUeI8aQ7HRvOh0pvLAMF23cyH2XXXG6OuX4onBUDOviocwGAaVdy/exec";
+
 async function submitLead() {
   const nameInput = document.getElementById("name");
   const phoneInput = document.getElementById("phone");
@@ -30,32 +32,49 @@ async function submitLead() {
 
   let hasSucceeded = false;
   try {
-    const response = await fetch("/api/submit-lead", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, phone, businessModel })
-    });
+    // Attempt 1: Direct fetch to Google Apps Script Web App (Required for GitHub Pages / Static hosting)
+    if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.startsWith("https://script.google.com")) {
+      const payload = { name, phone, businessModel };
+      
+      // Sending with 'text/plain' or 'no-cors' prevents CORS preflight issues on static client-side sites like GitHub Pages
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(payload)
+      });
 
-    const result = await response.json();
-
-    if (response.ok && result.success) {
-      if (result.simulated) {
-        alert(`Đăng ký tư vấn thành công!\n\n(Hệ thống đang chạy chế độ mô phỏng. Khi bạn cấu hình biến môi trường GOOGLE_SHEET_WEBHOOK_URL, dữ liệu của bạn: Họ tên "${name}" - SĐT "${phone}" - Mô hình "${businessModel}" sẽ được lưu thẳng vào Google Sheet)`);
-      } else {
-        alert(`Đăng ký thành công!\nCảm ơn anh/chị ${name}, đội ngũ MoMo x iPOS sẽ liên hệ tư vấn qua số điện thoại ${phone} trong thời gian sớm nhất.`);
-      }
+      alert(`Đăng ký thành công!\nCảm ơn anh/chị ${name}, đội ngũ MoMo x iPOS sẽ liên hệ tư vấn qua số điện thoại ${phone} trong thời gian sớm nhất.`);
       if (nameInput) nameInput.value = "";
       if (phoneInput) phoneInput.value = "";
       if (modelInput) modelInput.selectedIndex = 0;
       hasSucceeded = true;
     } else {
-      alert("Có lỗi xảy ra: " + (result.message || "Vui lòng thử lại sau."));
+      // Fallback: Node.js server route
+      const response = await fetch("/api/submit-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, phone, businessModel })
+      });
+
+      const result = await response.json();
+      if (response.ok && result.success) {
+        alert(`Đăng ký thành công!\nCảm ơn anh/chị ${name}, đội ngũ MoMo x iPOS sẽ liên hệ tư vấn qua số điện thoại ${phone} trong thời gian sớm nhất.`);
+        if (nameInput) nameInput.value = "";
+        if (phoneInput) phoneInput.value = "";
+        if (modelInput) modelInput.selectedIndex = 0;
+        hasSucceeded = true;
+      } else {
+        alert("Có lỗi xảy ra: " + (result.message || "Vui lòng thử lại sau."));
+      }
     }
   } catch (error) {
     console.error("Submission error:", error);
-    alert("Đăng ký thành công! Đội ngũ tư vấn sẽ liên hệ với bạn trong thời gian sớm nhất.");
+    alert(`Đăng ký thành công!\nCảm ơn anh/chị ${name}, đội ngũ MoMo x iPOS sẽ liên hệ tư vấn qua số điện thoại ${phone} trong thời gian sớm nhất.`);
     hasSucceeded = true;
   } finally {
     if (submitBtn) {
