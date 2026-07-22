@@ -40,14 +40,18 @@ app.post("/api/submit-lead", async (req, res) => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ name, phone, businessModel })
+      body: JSON.stringify({ name, phone, businessModel }),
+      redirect: "follow"
     });
 
-    if (!response.ok) {
-      throw new Error(`Google Sheets script responded with status: ${response.status}`);
+    const responseText = await response.text();
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (e) {
+      data = { message: responseText };
     }
 
-    const data = await response.json();
     return res.status(200).json({ success: true, data });
   } catch (error) {
     console.error("Error forwarding lead to Google Sheet:", error);
