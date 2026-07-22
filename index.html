@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<script>
+  (function() {
+    try {
+      var originalFetch = window.fetch;
+      var currentFetch = originalFetch;
+      Object.defineProperty(window, 'fetch', {
+        get: function() {
+          return currentFetch;
+        },
+        set: function(val) {
+          currentFetch = val;
+        },
+        configurable: true,
+        enumerable: true
+      });
+    } catch (e) {
+      console.warn("Could not redefine window.fetch property:", e);
+    }
+  })();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ══ SEO META ══ -->
+<title>Máy Quẹt Thẻ Cho Quán Cà Phê, Nhà Hàng | Phí Từ 0,3%</title>
+<meta name="description" content="Máy quẹt thẻ kết nối phần mềm bán hàng iPOS. Chấp nhận thẻ, QR, ví, chạm. Phí từ 0,3%. Khớp hóa đơn VAT đến từng đồng lẻ. Lắp đặt tận nơi trong 6 ngày.">
+<link rel="canonical" href="https://mayquetthe.vn/">
+<meta property="og:title" content="Máy Quẹt Thẻ Cho Quán Cà Phê, Nhà Hàng | Phí Từ 0,3%">
+<meta property="og:description" content="Phí từ 0,3%. Chấp nhận thẻ, QR, ví, chạm. Kết nối iPOS, khớp hóa đơn VAT đến từng đồng lẻ.">
+<meta property="og:url" content="https://mayquetthe.vn/">
+<meta property="og:type" content="website">
+
+<!-- ══ SCHEMA: Organization ══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "[TÊN PHÁP NHÂN — CẦN ĐIỀN]",
+  "url": "https://mayquetthe.vn/",
+  "telephone": "+84349503070",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "VN",
+    "streetAddress": "[ĐỊA CHỈ — CẦN ĐIỀN]"
+  }
+}
+</script>
+
+<!-- ══ SCHEMA: FAQPage ══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Phí quẹt thẻ tính thế nào?","acceptedAnswer":{"@type":"Answer","text":"Phí tính trên từng giao dịch, không phí ẩn. QR ngân hàng và VietQR từ 0,3%. Phí thẻ thay đổi theo loại thẻ khách sử dụng và theo mô hình kinh doanh. Gọi 0349 503 070 để nhận báo phí cụ thể trước khi ký hợp đồng."}},
+    {"@type":"Question","name":"Máy quẹt thẻ có kết nối được phần mềm bán hàng iPOS không?","acceptedAnswer":{"@type":"Answer","text":"Có. Máy kết nối trực tiếp với iPOS. Thu ngân lên đơn xong, số tiền đã gồm VAT tự chuyển sang máy, không phải nhập tay. Đối soát và báo cáo tự động theo ngày."}},
+    {"@type":"Question","name":"Số tiền trên máy có khớp hóa đơn VAT không?","acceptedAnswer":{"@type":"Answer","text":"Khớp đến từng đồng lẻ. Số tiền đồng bộ trực tiếp từ hóa đơn iPOS, gồm tạm tính cộng VAT, không làm tròn, không lệch. Kế toán lấy số dùng thẳng để kê khai."}},
+    {"@type":"Question","name":"Lắp đặt máy quẹt thẻ mất bao lâu?","acceptedAnswer":{"@type":"Answer","text":"6 ngày làm việc. Ngày 1 đăng ký, ngày 2–3 tư vấn và hoàn thiện hồ sơ, ngày 4–5 thẩm định và phê duyệt, ngày 6 lắp đặt tận nơi và hướng dẫn sử dụng."}},
+    {"@type":"Question","name":"Hộ kinh doanh có đăng ký máy quẹt thẻ được không?","acceptedAnswer":{"@type":"Answer","text":"Được. Hộ kinh doanh cá thể và doanh nghiệp đều đăng ký được. Nhân viên tư vấn sẽ hướng dẫn hồ sơ cần chuẩn bị theo loại hình của bạn."}},
+    {"@type":"Question","name":"Máy nhận được những hình thức thanh toán nào?","acceptedAnswer":{"@type":"Answer","text":"Thẻ Napas, Visa, Mastercard, JCB, Amex. QR ngân hàng và VietQR. Ví MoMo, ZaloPay, ShopeePay. Chạm điện thoại Apple Pay, Google Pay, Samsung Pay. Trả góp 0% qua thẻ tín dụng. E-voucher. Tất cả trên một máy."}},
+    {"@type":"Question","name":"Máy quẹt thẻ mất mạng có dùng được không?","acceptedAnswer":{"@type":"Answer","text":"Máy có SIM 4G dự phòng bên cạnh WiFi và pin dùng cả ngày. Mất WiFi vẫn giao dịch bình thường."}}
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Momo+Trust+Sans:wght@200..800&display=swap" rel="stylesheet">
+<link href="style.css" rel="stylesheet"/>
+<script defer src="script.js"></script>
+</head>
+<body>
+
+<!-- ════════ NAV ════════ -->
+<nav>
+  <div class="wrap nav-in">
+    <div class="brand">mayquetthe<span>.vn</span></div>
+    <div class="nav-links">
+      <a href="#loiich">Lợi ích</a>
+      <a href="#phuongthuc">Phương thức thanh toán</a>
+      <a href="#quytrinh">Quy trình</a>
+      <a href="#faq">Hỏi đáp</a>
+    </div>
+    <div class="nav-actions">
+      <a href="#dangky" class="btn btn-1 nav-cta-btn">Nhận tư vấn</a>
+      <button class="burger-btn" id="burger-btn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile dropdown menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#loiich">Lợi ích</a>
+    <a href="#phuongthuc">Phương thức thanh toán</a>
+    <a href="#quytrinh">Quy trình</a>
+    <a href="#faq">Hỏi đáp</a>
+    <a href="#dangky" class="btn btn-1 mobile-cta-btn">Nhận tư vấn</a>
+  </div>
+</nav>
+
+<!-- HERO - KHÔNG THAY ĐỔI -->
+<section class="hero">
+<a href="#mo-hinh" style="display: block; width: 100%; cursor: pointer;">
+<picture class="hero-picture">
+<source media="(max-width: 860px)" srcset="https://images.langmodaquangtri.com/momo/banner%20v2/mobile.webp" />
+<img src="https://images.langmodaquangtri.com/momo/banner%20v2/desktop.webp" alt="MoMo x iPOS Hero Banner" class="hero-banner-img" />
+</picture>
+</a>
+</section>
+
+<!-- ════════ 2. TRUST STRIP — DỜI LÊN TỪ CUỐI TRANG ════════ -->
+<div class="trust">
+  <div class="wrap trust-in">
+    <p class="trust-txt">Dịch vụ thanh toán bởi <b>MoMo</b> · hơn <b>300.000 điểm chấp nhận thanh toán</b> trên toàn quốc</p>
+    <div class="trust-logos">
+      <img src="https://homepage.momocdn.net/fileuploads/svg/momo-file-240411162904.svg" alt="MoMo">
+      <img src="https://ipos.vn/wp-content/uploads/2025/08/logo.svg" alt="iPOS">
+      <img src="https://images.langmodaquangtri.com/momo/pci-dss-1.png" alt="Chuẩn bảo mật thẻ PCI DSS">
+      <img src="https://images.langmodaquangtri.com/momo/VISA-logo.png" alt="Visa">
+      <img src="https://images.langmodaquangtri.com/momo/Mastercard-logo.svg.webp" alt="Mastercard">
+      <img src="https://images.langmodaquangtri.com/momo/logo-napas-16899065047812042806293-17506501221901132348312.png" alt="Napas">
+    </div>
+  </div>
+</div>
+
+<!-- ════════ 3. LỢI ÍCH ════════ -->
+<section id="loiich">
+  <div class="wrap">
+    <div class="sec-head center">
+      <h2 class="title" style="margin-bottom: 12px;">Chỉ cần một máy quẹt thẻ cho <span class="momo-signature">mọi phương thức thanh toán</span></h2>
+      <p class="lead center">Kết nối phần mềm bán hàng iPOS. Một luồng đối soát cho toàn bộ giao dịch tại quầy.</p>
+    </div>
+
+    <div class="bgrid">
+      <div class="bitem">
+        <img src="https://images.langmodaquangtri.com/momo/icon/%5BMOMO%5D_Icon_10.png" alt="Chấp nhận mọi phương thức thanh toán">
+        <div>
+          <h3>Chấp nhận mọi phương thức thanh toán</h3>
+          <p>Thẻ nội địa và quốc tế, QR ngân hàng, ví điện tử, thanh toán chạm không tiếp xúc. Một máy, đủ cả.</p>
+        </div>
+      </div>
+
+      <div class="bitem">
+        <img src="https://images.langmodaquangtri.com/momo/icon/%5BMOMO%5D_Icon_4.png" alt="Kết nối phần mềm bán hàng iPOS">
+        <div>
+          <h3>Kết nối phần mềm bán hàng iPOS</h3>
+          <p>Thu ngân lên đơn trên iPOS, số tiền tự chuyển sang máy. Không nhập tay, không nhập nhầm.</p>
+        </div>
+      </div>
+
+      <div class="bitem">
+        <img src="https://images.langmodaquangtri.com/momo/icon/%5BMOMO%5D_Icon_9.png" alt="Khớp hóa đơn VAT đến từng đồng lẻ">
+        <div>
+          <h3>Khớp hóa đơn VAT đến từng đồng lẻ</h3>
+          <p>Số tiền đồng bộ từ hóa đơn, đã gồm VAT. Không làm tròn, không lệch. Kế toán lấy số dùng thẳng để kê khai.</p>
+        </div>
+      </div>
+
+      <div class="bitem">
+        <img src="https://images.langmodaquangtri.com/momo/icon%203/qr.webp" alt="Một luồng đối soát duy nhất">
+        <div>
+          <h3>Một luồng đối soát duy nhất</h3>
+          <p>Mọi phương thức thanh toán về chung một báo cáo. Đối soát tự động theo ngày, mỗi giao dịch một chứng từ.</p>
+        </div>
+      </div>
+
+      <div class="bitem">
+        <img src="https://images.langmodaquangtri.com/momo/icon/%5BMOMO%5D_Icon_14.png" alt="Phí giao dịch cạnh tranh từ 0,3%">
+        <div>
+          <h3>Phí giao dịch cạnh tranh</h3>
+          <p>Từ 0,3%, tính trên từng giao dịch, không phí ẩn. Mức phí cụ thể theo loại thẻ và mô hình kinh doanh.</p>
+        </div>
+      </div>
+
+      <div class="bitem">
+        <img src="https://images.langmodaquangtri.com/momo/icon%203/%5BMOMO%5D_3D_BankAccount.webp" alt="Trả góp 0% lãi suất qua thẻ tín dụng">
+        <div>
+          <h3>Trả góp 0% lãi suất</h3>
+          <p>Chuyển đổi trả góp ngay tại quầy qua thẻ tín dụng. Nâng cơ hội bán các đơn giá trị cao.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dải phí mỏng — thay cho cả section Bảng phí trước đây -->
+    <div class="feebar" id="phi">
+      <div class="feebar-l">
+        <span class="feebar-num">Từ 0,3%</span>
+        <span class="feebar-txt">phí giao dịch · không phí ẩn</span>
+      </div>
+      <div class="feebar-r">
+        <p>Mức phí thay đổi theo loại thẻ khách sử dụng và theo mô hình kinh doanh. Báo phí cụ thể trước khi ký hợp đồng.</p>
+        <a href="#dangky" class="btn btn-1">Nhận tư vấn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 6. TRƯỚC / SAU ════════ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head center" style="margin-bottom: 32px;">
+      <span class="eyebrow">So sánh</span>
+      <h2 class="title">Trước và sau khi quán có máy quẹt thẻ</h2>
+    </div>
+    
+    <div class="ba-toggle-wrapper">
+      <button class="ba-toggle-btn active" data-tab="before">Trước đây</button>
+      <button class="ba-toggle-btn" data-tab="after">Sau khi lắp máy</button>
+    </div>
+
+    <div class="ba">
+      <div class="ba-col before active">
+        <h3>Trước đây</h3>
+        <ul>
+          <li>Thu ngân nhập lại số tiền bằng tay trên máy quẹt thẻ</li>
+          <li>Số trên máy lệch hóa đơn — kế toán phải dò lại từng đồng lẻ</li>
+          <li>Đối soát thủ công, dò từng dòng sao kê cuối ngày</li>
+          <li>Chỉ nhận chuyển khoản và tiền mặt</li>
+        </ul>
+      </div>
+      <div class="ba-col after">
+        <h3>Sau khi lắp máy</h3>
+        <ul>
+          <li>Số tiền tự chuyển từ iPOS sang máy, thu ngân chỉ xác nhận</li>
+          <li>Khớp hóa đơn VAT đến từng đồng lẻ, không làm tròn</li>
+          <li>Đối soát và báo cáo tự động theo ngày</li>
+          <li>Chấp nhận thêm thẻ, QR, ví, thanh toán chạm</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 7. MÔ HÌNH ════════ -->
+<section id="mo-hinh">
+  <div class="wrap">
+    <div class="sec-head center" style="margin-bottom: 32px;">
+      <span class="eyebrow">Phù hợp mọi mô hình</span>
+      <h2 class="title">Máy quẹt thẻ cho từng <span class="momo-signature">mô hình kinh doanh</span></h2>
+    </div>
+    <div class="models">
+      <div class="model">
+        <img src="https://images.langmodaquangtri.com/momo/icon2/cf.png" alt="Máy quẹt thẻ cho quán cà phê, trà sữa">
+        <h3>Quán cà phê / trà sữa</h3>
+        <p>Thanh toán chạm trong hai giây. Giờ cao điểm, hàng chờ tại quầy không bị ùn.</p>
+      </div>
+      <div class="model">
+        <img src="https://images.langmodaquangtri.com/momo/icon2/burger.png" alt="Máy quẹt thẻ cho nhà hàng, quán ăn">
+        <h3>Nhà hàng / quán ăn</h3>
+        <p>Thanh toán tại bàn, in hóa đơn VAT ngay tại chỗ. Khách không cần ra quầy.</p>
+      </div>
+      <div class="model">
+        <img src="https://images.langmodaquangtri.com/momo/icon2/shopping.png" alt="Máy quẹt thẻ cho cửa hàng bán lẻ, tạp hóa">
+        <h3>Bán lẻ / tạp hóa</h3>
+        <p>Giảm lượng tiền mặt tại quầy. Tiền về đúng tài khoản, cuối ngày không cần kiểm đếm.</p>
+      </div>
+      <div class="model">
+        <img src="https://images.langmodaquangtri.com/momo/icon2/pill.png" alt="Máy quẹt thẻ cho nhà thuốc">
+        <h3>Nhà thuốc</h3>
+        <p>Mỗi đơn thuốc xuất hóa đơn đúng số. Minh bạch với khách và với cơ quan quản lý.</p>
+      </div>
+      <div class="model">
+        <img src="https://images.langmodaquangtri.com/momo/icon2/phone.png" alt="Máy quẹt thẻ trả góp 0% cho cửa hàng điện tử, gia dụng">
+        <h3>Điện tử / gia dụng</h3>
+        <p>Chuyển đổi trả góp 0% lãi suất ngay tại quầy. Nâng cơ hội bán các đơn giá trị cao.</p>
+      </div>
+      <div class="model">
+        <img src="https://images.langmodaquangtri.com/momo/icon2/house.png" alt="Máy quẹt thẻ quốc tế cho khách sạn, dịch vụ">
+        <h3>Khách sạn / dịch vụ</h3>
+        <p>Chấp nhận thẻ quốc tế và thanh toán không tiếp xúc. Phục vụ khách nước ngoài.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 8. PHƯƠNG THỨC THANH TOÁN ════════ -->
+<section id="phuongthuc">
+  <div class="wrap">
+    <div class="sec-head center" style="margin-bottom: 32px;">
+      <span class="eyebrow">Phương thức thanh toán</span>
+      <h2 class="title">Khách trả bằng cách nào cũng nhận được</h2>
+    </div>
+    <div class="pays-wrapper" id="pays-container">
+      <!-- POS Machine Image (Center on Desktop, Top on Mobile) -->
+      <div class="pays-center-pos">
+        <div class="pos-img-wrapper" id="pos-interactive-wrapper">
+          <div class="pos-waves" id="pos-waves-container">
+            <div class="pos-wave pos-wave-1"></div>
+            <div class="pos-wave pos-wave-2"></div>
+            <div class="pos-wave pos-wave-3"></div>
+            <div class="pos-wave pos-wave-4"></div>
+          </div>
+          <img src="https://images.langmodaquangtri.com/momo/pos1.webp" alt="Máy POS quẹt thẻ MoMo iPOS" class="pos-center-img" id="pos-main-img">
+        </div>
+      </div>
+
+      <!-- Payment Cards Track -->
+      <div class="pays-cards-slider" id="pays-list">
+        <div class="pay pay-card-1" id="pay-card-1">
+          <img src="https://images.langmodaquangtri.com/momo/icon%203/%5BMOMO%5D_3D_Card.webp" alt="Thẻ Visa Mastercard JCB Amex Napas">
+          <h3>Thẻ</h3><p>Visa, Mastercard, JCB, Amex, Napas</p>
+        </div>
+        <div class="pay pay-card-2" id="pay-card-2">
+          <img src="https://images.langmodaquangtri.com/momo/icon%203/qr.webp" alt="QR ngân hàng VietQR">
+          <h3>QR Code</h3><p>VietQR, QR ngân hàng & ví</p>
+        </div>
+        <div class="pay pay-card-3" id="pay-card-3">
+          <img src="https://images.langmodaquangtri.com/momo/icon%203/%5BMOMO%5D_3D_PhoneCard.webp" alt="Thanh toán chạm NFC Apple Pay Google Pay">
+          <h3>Thanh toán chạm</h3><p>Apple Pay, Google Pay, Samsung Pay</p>
+        </div>
+        <div class="pay pay-card-4" id="pay-card-4">
+          <img src="https://images.langmodaquangtri.com/momo/icon%203/%5BMOMO%5D_3D_Wallet.webp" alt="Thanh toán ví điện tử">
+          <h3>Ví điện tử</h3><p>MoMo, ZaloPay, ShopeePay</p>
+        </div>
+        <div class="pay pay-card-5" id="pay-card-5">
+          <img src="https://images.langmodaquangtri.com/momo/icon%203/%5BMOMO%5D_3D_BankAccount.webp" alt="Trả góp 0% qua thẻ tín dụng">
+          <h3>Trả góp 0%</h3><p>Qua thẻ tín dụng, đơn từ 2 triệu</p>
+        </div>
+        <div class="pay pay-card-6" id="pay-card-6">
+          <img src="https://images.langmodaquangtri.com/momo/icon%203/%5BMOMO%5D_3D_Sale.webp" alt="E-voucher mã giảm giá">
+          <h3>E-voucher</h3><p>Mã quà tặng & giảm giá</p>
+        </div>
+      </div>
+    </div>
+    <div class="pays-nav" id="pays-nav-controls">
+      <button class="pays-prev" id="pays-prev-btn" aria-label="Previous">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <button class="pays-next" id="pays-next-btn" aria-label="Next">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 9. RISK REVERSAL — THAY CHO 7 TESTIMONIAL GIẢ ════════ -->
+<section class="risk" style="padding: 60px 0;">
+  <div class="wrap">
+    <div class="sec-head center" style="margin-bottom: 32px;">
+      <span class="eyebrow">Cam kết dịch vụ</span>
+      <h2 class="title">Vì sao quán chọn MoMo</h2>
+      <p class="lead">Đơn vị trung gian thanh toán được Ngân hàng Nhà nước cấp phép, đạt chuẩn bảo mật thẻ quốc tế.</p>
+    </div>
+    <div class="risk-grid">
+      <div class="risk-item">
+        <span class="tick">✓</span>
+        <h3>Được NHNN cấp phép</h3>
+        <p>Giấy phép cung ứng dịch vụ trung gian thanh toán.</p>
+      </div>
+      <div class="risk-item">
+        <span class="tick">✓</span>
+        <h3>Đạt chuẩn PCI DSS</h3>
+        <p>Chuẩn bảo mật dữ liệu thẻ quốc tế.</p>
+      </div>
+      <div class="risk-item">
+        <span class="tick">✓</span>
+        <h3>Lắp đặt tận nơi</h3>
+        <p>Nhân viên đến quán lắp máy và hướng dẫn thu ngân sử dụng.</p>
+      </div>
+      <div class="risk-item">
+        <span class="tick">✓</span>
+        <h3>Hỗ trợ trong giờ kinh doanh</h3>
+        <p>Hotline và Zalo, xử lý sự cố tại quầy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 10. QUY TRÌNH ════════ -->
+<section id="quytrinh">
+  <div class="wrap">
+    <div class="sec-head center" style="margin-bottom: 32px;">
+      <span class="eyebrow">Quy trình</span>
+      <h2 class="title">Đăng ký máy quẹt thẻ: 4 bước, xong trong 6 ngày</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-top">
+          <div class="n">1</div>
+          <div class="day">Ngày 1</div>
+        </div>
+        <h3>Đăng ký</h3>
+        <p>Để lại thông tin hoặc gọi hotline. Đội ngũ tiếp nhận trong ngày.</p>
+      </div>
+      <div class="step">
+        <div class="step-top">
+          <div class="n">2</div>
+          <div class="day">Ngày 2–3</div>
+        </div>
+        <h3>Tư vấn &amp; hồ sơ</h3>
+        <p>Tư vấn cấu hình phù hợp mô hình quán, hỗ trợ hoàn thiện hồ sơ.</p>
+      </div>
+      <div class="step">
+        <div class="step-top">
+          <div class="n">3</div>
+          <div class="day">Ngày 4–5</div>
+        </div>
+        <h3>Thẩm định &amp; phê duyệt</h3>
+        <p>Hồ sơ được kiểm tra và phê duyệt.</p>
+      </div>
+      <div class="step">
+        <div class="step-top">
+          <div class="n">4</div>
+          <div class="day">Ngày 6</div>
+        </div>
+        <h3>Lắp đặt</h3>
+        <p>Lắp máy tận nơi, kết nối iPOS, hướng dẫn thu ngân sử dụng.</p>
+      </div>
+    </div>
+    <p class="steps-foot">⏱ Hoàn tất trong 6 ngày làm việc</p>
+  </div>
+</section>
+
+<!-- ════════ 11. FORM ════════ -->
+<section id="dangky" style="padding: 60px 0;">
+  <div class="wrap form-grid">
+    <div>
+      <span class="eyebrow">Liên hệ</span>
+      <h2 class="title" style="margin-bottom: 12px;">Để lại thông tin <span class="momo-signature">nhận tư vấn</span></h2>
+      <p class="lead" style="margin: 0 0 24px 0; text-align: left;">Nhân viên sẽ báo phí cụ thể theo mô hình quán, tư vấn hồ sơ cần chuẩn bị và hẹn lịch lắp đặt.</p>
+
+      <div class="sales-support-card">
+        <div class="sales-support-header">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" class="sales-support-icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <h3>Liên hệ Sale hỗ trợ vùng</h3>
+        </div>
+        <p class="sales-support-desc">Chọn khu vực của bạn để xem danh sách nhân viên tư vấn hỗ trợ trực tiếp:</p>
+        <div class="sales-btn-group">
+          <button type="button" class="btn-sales-region" data-region="hcm">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
+            TP. Hồ Chí Minh
+          </button>
+          <button type="button" class="btn-sales-region" data-region="hn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
+            Hà Nội
+          </button>
+        </div>
+      </div>
+      <p class="microcopy" style="margin-top: 16px; font-size: 13px; color: var(--grey);">Liên hệ lại trong vòng 24 giờ làm việc.</p>
+    </div>
+
+    <div class="form-card">
+      <div class="field">
+        <label for="name">Tên bạn</label>
+        <input id="name" name="name" type="text" placeholder="VD: Nguyễn Văn A" required>
+      </div>
+      <div class="field">
+        <label for="phone">Số điện thoại</label>
+        <input id="phone" name="phone" type="tel" inputmode="numeric" placeholder="09xx xxx xxx" required>
+      </div>
+      <div class="field">
+        <label for="biz">Bạn kinh doanh gì?</label>
+        <select id="biz" name="biz">
+          <option value="">— Chọn mô hình —</option>
+          <option>Quán cà phê / trà sữa</option>
+          <option>Nhà hàng / quán ăn</option>
+          <option>Bán lẻ / tạp hóa</option>
+          <option>Nhà thuốc</option>
+          <option>Điện tử / gia dụng</option>
+          <option>Khách sạn / dịch vụ</option>
+          <option>Khác</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-1" onclick="submitLead()">Gửi thông tin</button>
+      <p class="form-promise">Liên hệ lại trong 24 giờ làm việc</p>
+
+      <p class="or">— hoặc liên hệ ngay —</p>
+      <div class="contact-row">
+        <a href="tel:0349503070" class="btn btn-2">Gọi ngay</a>
+        <a href="http://zaloapp.com/qr/p/nl0sjbvdancv" class="btn btn-2">Nhắn Zalo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 12. FAQ ════════ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head center" style="margin-bottom: 32px;">
+      <span class="eyebrow">Giải đáp</span>
+      <h2 class="title">Câu hỏi thường gặp về máy quẹt thẻ</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Phí quẹt thẻ tính thế nào?</summary>
+        <p>Phí tính trên từng giao dịch, không phí ẩn. QR ngân hàng và VietQR từ 0,3%. Phí thẻ thay đổi theo loại thẻ khách sử dụng — thẻ nội địa Napas thấp hơn thẻ tín dụng quốc tế — và theo mô hình kinh doanh. Gọi 0349 503 070 để nhận báo phí cụ thể trước khi ký hợp đồng.</p>
+      </details>
+      <details>
+        <summary>Số tiền trên máy có khớp hóa đơn VAT không?</summary>
+        <p>Khớp đến từng đồng lẻ. Số tiền đồng bộ trực tiếp từ hóa đơn iPOS, gồm tạm tính cộng VAT, không làm tròn. Kế toán lấy số dùng thẳng, không phải đối chiếu ngược từ sao kê.</p>
+      </details>
+      <details>
+        <summary>Máy có kết nối phần mềm bán hàng không?</summary>
+        <p>Có. Máy kết nối trực tiếp với iPOS. Thu ngân lên đơn xong, số tiền tự chuyển sang máy — không nhập tay. Đối soát và báo cáo tự động theo ngày.</p>
+      </details>
+      <details>
+        <summary>Lắp đặt mất bao lâu?</summary>
+        <p>6 ngày làm việc. Ngày 1 đăng ký, ngày 2–3 tư vấn và hoàn thiện hồ sơ, ngày 4–5 thẩm định và phê duyệt, ngày 6 lắp đặt tận nơi và hướng dẫn sử dụng.</p>
+      </details>
+      <details>
+        <summary>Hộ kinh doanh đăng ký được không?</summary>
+        <p>Được. Hộ kinh doanh cá thể và doanh nghiệp đều đăng ký được. Nhân viên tư vấn sẽ hướng dẫn hồ sơ cần chuẩn bị theo từng loại hình.</p>
+      </details>
+      <details>
+        <summary>Máy nhận được những hình thức nào?</summary>
+        <p>Thẻ Napas, Visa, Mastercard, JCB, Amex. QR ngân hàng và VietQR. Ví MoMo, ZaloPay, ShopeePay. Chạm điện thoại Apple Pay, Google Pay, Samsung Pay. Trả góp 0% qua thẻ tín dụng. E-voucher. Tất cả trên một máy.</p>
+      </details>
+      <details>
+        <summary>Mất mạng thì máy có dùng được không?</summary>
+        <p>Máy có SIM 4G dự phòng bên cạnh WiFi và pin dùng cả ngày. Mất WiFi vẫn giao dịch bình thường.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 13. BLOG ════════ -->
+<section style="padding: 60px 0;">
+  <div class="wrap">
+    <div class="sec-head center" style="margin-bottom: 32px;">
+      <span class="eyebrow">Tìm hiểu thêm</span>
+      <h2 class="title">Tìm hiểu thêm</h2>
+    </div>
+    <div class="posts">
+      <a class="post" href="/blog/phi-quet-the-visa-mastercard/">
+        <div class="post-content">
+          <span class="tag">Phí</span>
+          <h3>Phí quẹt thẻ Visa, Mastercard 2026 là bao nhiêu?</h3>
+          <p>Cách tính phí theo từng loại thẻ, và cách quán ước lượng chi phí thực tế.</p>
+        </div>
+        <div class="post-img-wrap">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=400&q=80" alt="Phí quẹt thẻ Visa, Mastercard 2026" class="post-thumb-img">
+        </div>
+      </a>
+      <a class="post" href="/blog/nghi-dinh-70-hoa-don-dien-tu-ho-kinh-doanh/">
+        <div class="post-content">
+          <span class="tag">Thuế</span>
+          <h3>Nghị định 70/2025: hộ kinh doanh F&amp;B xuất hóa đơn thế nào?</h3>
+          <p>Đối tượng áp dụng, thời hạn, và vai trò của máy quẹt thẻ trong việc kê khai.</p>
+        </div>
+        <div class="post-img-wrap">
+          <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=400&q=80" alt="Nghị định 70/2025" class="post-thumb-img">
+        </div>
+      </a>
+      <a class="post" href="/blog/so-sanh-may-quet-the-va-qr-ngan-hang/">
+        <div class="post-content">
+          <span class="tag">So sánh</span>
+          <h3>Máy quẹt thẻ hay QR ngân hàng: quán nên dùng cái nào?</h3>
+          <p>So sánh chi phí và trải nghiệm tại quầy giữa hai phương thức.</p>
+        </div>
+        <div class="post-img-wrap">
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1d704d3?auto=format&fit=crop&w=400&q=80" alt="So sánh máy quẹt thẻ và QR ngân hàng" class="post-thumb-img">
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 14. FOOTER ════════ -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <div class="brand" style="color:#fff;margin-bottom:12px">mayquetthe<span style="color:#e879b9">.vn</span></div>
+        <p>Máy quẹt thẻ kết nối phần mềm bán hàng iPOS. Dịch vụ thanh toán bởi MoMo.</p>
+      </div>
+      <div>
+        <h3>Liên hệ</h3>
+        <ul>
+          <li>Hotline: <a href="tel:0349503070">0349 503 070</a></li>
+          <li>Zalo: <a href="http://zaloapp.com/qr/p/nl0sjbvdancv">Nhắn tin</a></li>
+          <li>Email: <span class="todo">[CẦN ĐIỀN]</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Nội dung</h3>
+        <ul>
+          <li><a href="#phi">Bảng phí</a></li>
+          <li><a href="#quytrinh">Quy trình lắp đặt</a></li>
+          <li><a href="#faq">Câu hỏi thường gặp</a></li>
+          <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-legal">
+      <p><span class="todo">[TÊN PHÁP NHÂN ĐẦY ĐỦ — CẦN ĐIỀN]</span></p>
+      <p>Mã số thuế: <span class="todo">[CẦN ĐIỀN]</span> · Địa chỉ: <span class="todo">[CẦN ĐIỀN]</span></p>
+      <p>Giấy phép hoạt động cung ứng dịch vụ trung gian thanh toán số <span class="todo">[SỐ GP — CẦN ĐIỀN]</span> do Ngân hàng Nhà nước cấp</p>
+      <p>Chứng nhận PCI DSS · Thành viên Visa, Mastercard, JCB, Napas</p>
+      <p>© 2026. Mức phí thay đổi theo mô hình kinh doanh và loại thẻ.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════ BLOG MODAL POPUP ════════ -->
+<div id="blog-modal" class="modal-overlay">
+  <div class="modal-card">
+    <button class="modal-close" id="modal-close-btn" aria-label="Đóng popup">&times;</button>
+    <div class="modal-body">
+      <img id="modal-img" src="" alt="Blog image" class="modal-hero-img">
+      <div class="modal-content-wrap">
+        <span id="modal-tag" class="tag"></span>
+        <h2 id="modal-title" class="modal-title"></h2>
+        <div id="modal-text" class="modal-text"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-1 modal-cta-action" id="modal-cta-btn">Nhận tư vấn thêm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ SALES POPUP MODAL ════════ -->
+<div id="sales-modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-card sales-modal-card">
+    <button class="modal-close" id="sales-modal-close-btn" aria-label="Đóng popup">&times;</button>
+    <div class="sales-modal-header">
+      <span class="eyebrow">Đội ngũ hỗ trợ</span>
+      <h3 id="sales-modal-title" class="modal-title">Danh sách Sale hỗ trợ vùng</h3>
+    </div>
+    <div class="sales-modal-body">
+      <div class="sales-table-wrapper">
+        <table class="sales-table">
+          <thead>
+            <tr>
+              <th>Họ và Tên</th>
+              <th>Số điện thoại</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="sales-table-body">
+            <!-- Populated dynamically via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ STICKY CTA MOBILE ════════ -->
+<div class="sticky">
+  <a href="tel:0349503070" class="btn btn-1">Gọi ngay</a>
+  <a href="http://zaloapp.com/qr/p/nl0sjbvdancv" class="btn btn-2">Nhắn Zalo</a>
+</div>
+
+</body>
+</html>

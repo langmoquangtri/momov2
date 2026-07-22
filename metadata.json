@@ -1,0 +1,6 @@
+{
+  "name": "MoMo x iPOS",
+  "description": "Giải pháp thanh toán toàn diện MoMo — Máy thanh toán thẻ cho cửa hàng",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
