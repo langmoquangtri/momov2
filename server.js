@@ -1,9 +1,24 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import fs from "fs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Load .env file automatically if present
+const envPath = path.join(__dirname, ".env");
+if (fs.existsSync(envPath)) {
+  if (typeof process.loadEnvFile === "function") {
+    try {
+      process.loadEnvFile(envPath);
+    } catch (err) {
+      console.warn("Could not load .env file:", err);
+    }
+  }
+}
+
+const DEFAULT_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyeJjlbNmKEJSUSEUeI8aQ7HRvOh0pvLAMF23cyH2XXXG6OuX4onBUDOviocwGAaVdy/exec";
 
 const app = express();
 const PORT = 3000;
@@ -23,16 +38,7 @@ app.post("/api/submit-lead", async (req, res) => {
 
   console.log(`[Lead received] Name: "${name || 'N/A'}", Phone: "${phone}", Business Model: "${businessModel || 'N/A'}"`);
 
-  const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL;
-  if (!webhookUrl) {
-    console.warn("GOOGLE_SHEET_WEBHOOK_URL environment variable is not configured.");
-    // Simulate successful save when the environment variable is not yet set
-    return res.status(200).json({
-      success: true,
-      simulated: true,
-      message: "Lead processed successfully in simulation mode."
-    });
-  }
+  const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL || DEFAULT_WEBHOOK_URL;
 
   try {
     const response = await fetch(webhookUrl, {
@@ -52,6 +58,7 @@ app.post("/api/submit-lead", async (req, res) => {
       data = { message: responseText };
     }
 
+    console.log("[Webhook response]", data);
     return res.status(200).json({ success: true, data });
   } catch (error) {
     console.error("Error forwarding lead to Google Sheet:", error);
