@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "momov2",
+  "compatibility_date": "2026-07-22",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+    "exclude": [
+      "node_modules/**",
+      "server.js",
+      ".env*",
+      "package.json",
+      "bun.lock",
+      "metadata.json"
+    ]
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
