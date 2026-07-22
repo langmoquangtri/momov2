@@ -34,16 +34,25 @@ async function submitLead() {
   try {
     // Attempt 1: Direct fetch to Google Apps Script Web App (Required for GitHub Pages / Static hosting)
     if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.startsWith("https://script.google.com")) {
-      const payload = { name, phone, businessModel };
-      
-      // Sending with 'text/plain' or 'no-cors' prevents CORS preflight issues on static client-side sites like GitHub Pages
-      await fetch(GOOGLE_SCRIPT_URL, {
+      const formData = new URLSearchParams();
+      formData.append("name", name);
+      formData.append("phone", phone);
+      formData.append("businessModel", businessModel);
+
+      // Append query parameters as fallback for 302 redirects in Google Apps Script
+      const targetUrl = new URL(GOOGLE_SCRIPT_URL);
+      targetUrl.searchParams.set("name", name);
+      targetUrl.searchParams.set("phone", phone);
+      targetUrl.searchParams.set("businessModel", businessModel);
+
+      // Send with no-cors & form-urlencoded to work seamlessly on GitHub Pages without CORS blocking
+      await fetch(targetUrl.toString(), {
         method: "POST",
         mode: "no-cors",
         headers: {
-          "Content-Type": "text/plain;charset=utf-8"
+          "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: JSON.stringify(payload)
+        body: formData.toString()
       });
 
       alert(`Đăng ký thành công!\nCảm ơn anh/chị ${name}, đội ngũ MoMo x iPOS sẽ liên hệ tư vấn qua số điện thoại ${phone} trong thời gian sớm nhất.`);
